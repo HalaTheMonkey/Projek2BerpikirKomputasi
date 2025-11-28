@@ -3,8 +3,8 @@ import requests
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-# Bounding boxes for regions in Indonesia
-REGIONS = {
+# Provinsi dan kordinat dari tiap provinsi
+Provinsi = {
     "1": ("Sumatra",     -6.0, 6.0, 95.0, 109.0),
     "2": ("Jawa",        -9.5, -5.5, 105.0, 114.0),
     "3": ("Kalimantan",  -4.0, 4.5, 108.0, 119.0),
@@ -14,19 +14,19 @@ REGIONS = {
     "7": ("Indonesia",   -11.0, 6.0, 95.0, 141.0)
 }
 
-print("=== Earthquake Monitor (Indonesia) ===")
+print("=== Earthquake Monitor (Versi Indonesia) ===")
 
-print("Choose region:")
-for key, value in REGIONS.items():
+print("Pilih Provinsi yang mau diliat datanya:")
+for key, value in Provinsi.items():
     print(f"{key}. {value[0]}")
 
-region_choice = input("Region number: ")
+region_choice = input("Nomor Provinsinya: ")
 
-if region_choice not in REGIONS:
+if region_choice not in Provinsi:
     print("Invalid region choice.")
     exit()
 
-region_name, min_lat, max_lat, min_lon, max_lon = REGIONS[region_choice]
+region_name, min_lat, max_lat, min_lon, max_lon = Provinsi[region_choice]
 
 start_date = input("Start date (YYYY-MM-DD): ")
 end_date   = input("End date   (YYYY-MM-DD): ")
@@ -59,7 +59,7 @@ for eq in earthquakes:
     depths.append(depth)
     times.append(time)
 
-print(f"Region: {region_name}")
+print(f"Provinsi: {region_name}")
 print(f"Total earthquakes found: {len(magnitudes)}")
 
 plt.scatter(magnitudes, depths)
@@ -69,3 +69,4 @@ plt.title(f"Earthquake Magnitude vs Depth ({region_name})")
 plt.gca().invert_yaxis()
 plt.grid(True)
 plt.show()
+
