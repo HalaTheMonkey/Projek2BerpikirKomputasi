@@ -2,32 +2,29 @@
 import requests
 import matplotlib.pyplot as plt
 from datetime import datetime
+#5 Pulau-Pulau besar di Indonesia beserta kordinatnya
+Pulau_Pulau = [
+    ["Sumatra", -6.0, 6.0, 95.0, 109.0],
+    ["Jawa", -9.5, -5.5, 105.0, 114.0],
+    ["Kalimantan", -4.0, 4.5, 108.0, 119.0],
+    ["Sulawesi", -6.0, 6.5, 118.0, 126.0],
+    ["Bali-NTB-NTT",-11.0, -7.0, 114.0, 126.0],
+    ["Papua",       -10.0, 1.0, 136.0, 142.0]
+]
 
-# Provinsi dan kordinat dari tiap provinsi
-Provinsi = {
-    "1": ("Sumatra",     -6.0, 6.0, 95.0, 109.0),
-    "2": ("Jawa",        -9.5, -5.5, 105.0, 114.0),
-    "3": ("Kalimantan",  -4.0, 4.5, 108.0, 119.0),
-    "4": ("Sulawesi",    -6.0, 6.5, 118.0, 126.0),
-    "5": ("Bali-NTB-NTT",-11.0, -7.0, 114.0, 126.0),
-    "6": ("Papua",       -10.0, 1.0, 136.0, 142.0),
-    "7": ("Indonesia",   -11.0, 6.0, 95.0, 141.0)
-}
+print("=== Earthquake Monitor (Indonesia) ===")
 
-print("=== Earthquake Monitor (Versi Indonesia) ===")
-
-print("Pilih Provinsi yang mau diliat datanya:")
-for key, value in Provinsi.items():
-    print(f"{key}. {value[0]}")
-
-region_choice = input("Nomor Provinsinya: ")
-
-if region_choice not in Provinsi:
-    print("Invalid region choice.")
-    exit()
-
-region_name, min_lat, max_lat, min_lon, max_lon = Provinsi[region_choice]
-
+print("Choose region:")
+x = 0
+for i in Pulau_Pulau:
+    x += 1
+    print (f"{x}. {i[0]}")
+Pilihan_Pulau = int(input("Region number: "))
+Nama_Pulau =  Pulau_Pulau[Pilihan_Pulau -1] [0]
+min_lat = Pulau_Pulau[Pilihan_Pulau -1] [1]
+max_lat = Pulau_Pulau[Pilihan_Pulau -1] [2]
+min_lon = Pulau_Pulau[Pilihan_Pulau -1] [3]
+max_lon = Pulau_Pulau[Pilihan_Pulau -1] [4]
 start_date = input("Start date (YYYY-MM-DD): ")
 end_date   = input("End date   (YYYY-MM-DD): ")
 min_mag    = input("Minimum magnitude: ")
@@ -59,14 +56,13 @@ for eq in earthquakes:
     depths.append(depth)
     times.append(time)
 
-print(f"Provinsi: {region_name}")
+print(f"Region: {Nama_Pulau}")
 print(f"Total earthquakes found: {len(magnitudes)}")
 
 plt.scatter(magnitudes, depths)
 plt.xlabel("Magnitude")
 plt.ylabel("Depth (km)")
-plt.title(f"Earthquake Magnitude vs Depth ({region_name})")
-plt.gca().invert_yaxis()
+plt.title(f"Magnitudo Gempa vs Kedalaman ({Nama_Pulau}, {start_date}- {end_date})")
 plt.grid(True)
 plt.show()
 
