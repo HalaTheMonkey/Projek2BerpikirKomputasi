@@ -12,7 +12,7 @@ Pulau_Pulau = [
     ["Papua",       -10.0, 1.0, 136.0, 142.0]
 ]
 
-print("=== Earthquake Monitor (Indonesia) ===")
+print("=== Monitor Gempa (Indonesia) ===")
 
 print("Choose region:")
 x = 0
@@ -61,5 +61,6 @@ plt.ylabel("Depth (km)")
 plt.title(f"Magnitudo Gempa vs Kedalaman ({Nama_Pulau}, {start_date}- {end_date})")
 plt.grid(True)
 plt.show()
+
 
 
