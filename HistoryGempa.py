@@ -14,7 +14,7 @@ Pulau_Pulau = [
 
 print("=== Monitor Gempa (Indonesia) ===")
 
-print("Choose region:")
+print("Pilih pulau yang mau kamu cek datanya: ")
 x = 0
 for i in Pulau_Pulau:
     x += 1
@@ -52,8 +52,8 @@ for eq in Gempa-Gempa:
     depths.append(depth)
 
 
-print(f"Region: {Nama_Pulau}")
-print(f"Total earthquakes found: {len(magnitudes)}")
+print(f"Pulau: {Nama_Pulau}")
+print(f"Total Gempa yang ditemukan di {Nama Pulau} pada kurung waktu {start_date} - {end_date}: {len(magnitudes)}")
 
 plt.scatter(magnitudes, depths)
 plt.xlabel("Magnitude")
@@ -61,6 +61,7 @@ plt.ylabel("Depth (km)")
 plt.title(f"Magnitudo Gempa vs Kedalaman ({Nama_Pulau}, {start_date}- {end_date})")
 plt.grid(True)
 plt.show()
+
 
 
 
