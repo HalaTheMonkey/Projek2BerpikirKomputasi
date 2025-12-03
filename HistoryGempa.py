@@ -40,21 +40,17 @@ url = (
 response = requests.get(url)
 data = response.json()
 
-earthquakes = data["features"]
+Gempa-Gempa = data["features"]
 
 magnitudes = []
 depths = []
-times = []
 
-for eq in earthquakes:
+for eq in Gempa-Gempa:
     mag = eq["properties"]["mag"]
     depth = eq["geometry"]["coordinates"][2]
-    time_ms = eq["properties"]["time"]
-    time = datetime.utcfromtimestamp(time_ms / 1000)
-
     magnitudes.append(mag)
     depths.append(depth)
-    times.append(time)
+
 
 print(f"Region: {Nama_Pulau}")
 print(f"Total earthquakes found: {len(magnitudes)}")
@@ -65,4 +61,5 @@ plt.ylabel("Depth (km)")
 plt.title(f"Magnitudo Gempa vs Kedalaman ({Nama_Pulau}, {start_date}- {end_date})")
 plt.grid(True)
 plt.show()
+
 
